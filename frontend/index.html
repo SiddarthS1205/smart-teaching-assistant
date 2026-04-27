@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Teaching Assistant — Login</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body class="login-body">
+
+  <!-- Animated background particles -->
+  <div class="bg-particles">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <div class="login-container">
+    <!-- Logo / Branding -->
+    <div class="login-brand">
+      <div class="brand-icon">🎓</div>
+      <h1 class="brand-title">Smart Teaching Assistant</h1>
+      <p class="brand-subtitle">RAG · MCP · Agentic AI</p>
+    </div>
+
+    <!-- Login Card -->
+    <div class="login-card">
+      <h2 class="login-heading">Welcome back</h2>
+      <p class="login-subheading">Sign in to continue to your assistant</p>
+
+      <form id="loginForm" class="login-form" novalidate>
+        <!-- Error banner -->
+        <div id="loginError" class="alert alert-error hidden" role="alert">
+          <span class="alert-icon">⚠️</span>
+          <span id="loginErrorMsg">Invalid credentials. Please try again.</span>
+        </div>
+
+        <div class="form-group">
+          <label for="username" class="form-label">Username</label>
+          <div class="input-wrapper">
+            <span class="input-icon">👤</span>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              class="form-input"
+              placeholder="Enter your username"
+              autocomplete="username"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password" class="form-label">Password</label>
+          <div class="input-wrapper">
+            <span class="input-icon">🔒</span>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="form-input"
+              placeholder="Enter your password"
+              autocomplete="current-password"
+              required
+            />
+            <button type="button" class="toggle-password" id="togglePassword" aria-label="Toggle password visibility">
+              <span id="eyeIcon">👁️</span>
+            </button>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-full" id="loginBtn">
+          <span id="loginBtnText">Sign In</span>
+          <span id="loginSpinner" class="spinner hidden"></span>
+        </button>
+      </form>
+
+      <div class="login-demo-hint">
+        <p>Demo credentials: <code>admin</code> / <code>password123</code></p>
+      </div>
+    </div>
+
+    <p class="login-footer">
+      Smart Teaching Assistant &copy; 2024 · Powered by OpenAI &amp; FAISS
+    </p>
+  </div>
+
+  <script>
+    const API_BASE = "http://127.0.0.1:8000";
+
+    // Toggle password visibility
+    document.getElementById("togglePassword").addEventListener("click", () => {
+      const input = document.getElementById("password");
+      const icon = document.getElementById("eyeIcon");
+      if (input.type === "password") {
+        input.type = "text";
+        icon.textContent = "🙈";
+      } else {
+        input.type = "password";
+        icon.textContent = "👁️";
+      }
+    });
+
+    // Login form submission
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value;
+      const errorDiv = document.getElementById("loginError");
+      const errorMsg = document.getElementById("loginErrorMsg");
+      const btn = document.getElementById("loginBtn");
+      const btnText = document.getElementById("loginBtnText");
+      const spinner = document.getElementById("loginSpinner");
+
+      // Basic client-side validation
+      if (!username || !password) {
+        errorMsg.textContent = "Please enter both username and password.";
+        errorDiv.classList.remove("hidden");
+        return;
+      }
+
+      // Show loading state
+      btn.disabled = true;
+      btnText.textContent = "Signing in…";
+      spinner.classList.remove("hidden");
+      errorDiv.classList.add("hidden");
+
+      try {
+        const response = await fetch(`${API_BASE}/login`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, password }),
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          // Store session info
+          sessionStorage.setItem("sta_user", data.username);
+          sessionStorage.setItem("sta_auth", btoa(`${username}:${password}`));
+          // Redirect to main app
+          window.location.href = "app.html";
+        } else {
+          const err = await response.json();
+          errorMsg.textContent = err.detail || "Invalid credentials. Please try again.";
+          errorDiv.classList.remove("hidden");
+        }
+      } catch (err) {
+        errorMsg.textContent = "Cannot connect to server. Make sure the backend is running.";
+        errorDiv.classList.remove("hidden");
+      } finally {
+        btn.disabled = false;
+        btnText.textContent = "Sign In";
+        spinner.classList.add("hidden");
+      }
+    });
+
+    // If already logged in, redirect
+    if (sessionStorage.getItem("sta_user")) {
+      window.location.href = "app.html";
+    }
+  </script>
+</body>
+</html>
