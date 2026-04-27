@@ -1,0 +1,11 @@
+.vscode/
+__pycache__/
+*.pyc
+.env
+backend/.env
+logs/
+backend/logs/
+uploads/
+backend/uploads/
+vector_store/
+backend/vector_store/
