@@ -373,3 +373,29 @@ smart-teaching-assistant/
 
 This project demonstrates how modern AI systems can combine RAG, MCP, and multi-agent 
 architectures to build scalable and reliable academic assistants.
+
+
+## 📸 Screenshots
+
+### Login Page 
+<img width="1919" height="929" alt="Screenshot 2026-04-27 131821" src="https://github.com/user-attachments/assets/da4e46a0-aa89-420b-bb51-83559f409395" />
+
+### Chat Interface
+<img width="1919" height="930" alt="Screenshot 2026-04-27 105234" src="https://github.com/user-attachments/assets/2ba7618e-bcfa-4241-a6e0-bdece1675650" />
+
+### PDF Upload
+<img width="1919" height="775" alt="Screenshot 2026-04-27 131933" src="https://github.com/user-attachments/assets/75e1228d-25cd-45a8-bfdb-69d6825b6c69" />
+
+### Observability Logs
+<img width="1919" height="921" alt="Screenshot 2026-04-27 132541" src="https://github.com/user-attachments/assets/d6f37781-0bf4-44dd-b0ba-154584804764" />
+
+### Test Results
+<img width="1919" height="925" alt="Screenshot 2026-04-27 132122" src="https://github.com/user-attachments/assets/82d88d05-8dd0-41da-9498-2b23debc2bc2" />
+
+### RAG-Based Question Answering Interface
+<img width="1919" height="915" alt="Screenshot 2026-04-27 132532" src="https://github.com/user-attachments/assets/9fe015f8-c30c-43a1-8403-853a745d5477" />
+
+
+
+
+
