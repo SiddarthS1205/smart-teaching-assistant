@@ -37,40 +37,8 @@ The Smart Teaching Assistant lets students upload academic PDF documents and ask
 
 ## Architecture
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                        Frontend (HTML/CSS/JS)                │
-│   Login Page → Chat UI → File Upload → Query Input          │
-└──────────────────────────┬──────────────────────────────────┘
-                           │ HTTP (REST API)
-┌──────────────────────────▼──────────────────────────────────┐
-│                    FastAPI Backend                           │
-│                                                             │
-│  ┌─────────────┐    ┌──────────────────────────────────┐   │
-│  │  Guardrails │    │         Router Agent              │   │
-│  │  - Query    │───▶│  routes to QA or Summarizer       │   │
-│  │  - Upload   │    └──────────┬───────────────┬────────┘   │
-│  └─────────────┘               │               │            │
-│                         ┌──────▼──────┐  ┌─────▼────────┐  │
-│                         │  QA Agent   │  │  Summarizer  │  │
-│                         │             │  │  Agent       │  │
-│                         └──────┬──────┘  └─────┬────────┘  │
-│                                │               │            │
-│  ┌─────────────────────────────▼───────────────▼──────────┐ │
-│  │                    MCP Tool Pipeline                    │ │
-│  │                                                         │ │
-│  │  DocumentLoader → TextChunker → EmbeddingGenerator     │ │
-│  │       ↓                                                 │ │
-│  │  VectorDatabase (FAISS) ← Retriever ← LLMGenerator     │ │
-│  │       ↓                                                 │ │
-│  │  Summarizer Tool                                        │ │
-│  └─────────────────────────────────────────────────────────┘ │
-│                                                             │
-│  ┌─────────────────────────────────────────────────────────┐ │
-│  │              Observability (Logging + Tracking)         │ │
-│  └─────────────────────────────────────────────────────────┘ │
-└─────────────────────────────────────────────────────────────┘
-```
+<img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/3a7a497a-236b-4812-9791-03fb6763f306" />
+
 
 ---
 
