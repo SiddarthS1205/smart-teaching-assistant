@@ -57,16 +57,13 @@ Each tool is a self-contained module in `backend/tools/`:
 | **Summarizer** | `summarizer.py` | Produces structured academic summaries |
 
 ### Pipeline Flow (Upload)
-```
-PDF File → DocumentLoader → TextChunker → EmbeddingGenerator → VectorDatabase
-```
+
+<img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/b3c8dcdb-4d08-4330-9577-2484cc7c6629" />
+
 
 ### Pipeline Flow (Query)
-```
-Query → Guardrails → RouterAgent → [QAAgent | SummarizerAgent]
-                                        ↓
-                               Retriever → LLMGenerator → Answer
-```
+
+<img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/7632f3a0-d9df-409b-ac47-bee5840c3bde" />
 
 ---
 
