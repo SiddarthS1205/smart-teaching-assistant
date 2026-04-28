@@ -1,6 +1,16 @@
 # 🎓 Smart Teaching Assistant
 
-> A production-ready, full-stack academic AI assistant combining **RAG**, **MCP**, **Multi-Agent Systems**, **Guardrails**, **Observability**, and **Testing**.
+> > A full-stack Smart Teaching Assistant built using FastAPI (Python) and a custom web frontend.  
+> Implements Model Context Protocol (MCP), Retrieval-Augmented Generation (RAG), a multi-agent architecture, along with guardrails, observability, and extensive testing.
+
+![Python](https://img.shields.io/badge/Python-3.11-blue)
+![FastAPI](https://img.shields.io/badge/FastAPI-Backend-green)
+![Frontend](https://img.shields.io/badge/Frontend-HTML%2FCSS%2FJS-orange)
+![RAG](https://img.shields.io/badge/AI-RAG-purple)
+![MCP](https://img.shields.io/badge/Architecture-MCP-blueviolet)
+![Agents](https://img.shields.io/badge/System-Multi--Agent-red)
+![Tests](https://img.shields.io/badge/Tests-215%20Passed-brightgreen)
+![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
 ---
 
